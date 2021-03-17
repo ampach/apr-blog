@@ -1,6 +1,6 @@
 import { Entry } from 'contentful';
 import React from 'react';
-import { WhyAttendFields } from '../lib/contentful';
+import { IWhyAttendFields } from '../lib/contentful';
 import { Test } from '@uniformdev/optimize-tracker-react';
 import { TestVariant } from '@uniformdev/optimize-tracker-common';
 
@@ -13,13 +13,13 @@ enum PhotoLocation {
   Right = 'right',
 }
 
-type WhyAttendProps = Entry<WhyAttendFields> & {
+type WhyAttendProps = Entry<IWhyAttendFields> & {
   photoLocation: PhotoLocation | string;
 };
 
 const locationVariants: TestVariant[] = [{ id: PhotoLocation.Left }, { id: PhotoLocation.Right }];
 
-export const WhyAttendTestPhotoLocation = (props: Entry<WhyAttendFields>) => {
+export const WhyAttendTestPhotoLocation = (props: Entry<IWhyAttendFields>) => {
   return (
     <Test
       name="Why Attend Photo Location Test"

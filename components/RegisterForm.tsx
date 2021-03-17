@@ -2,10 +2,10 @@ import { useUniformTracker } from '@uniformdev/optimize-tracker-react';
 import { Entry } from 'contentful';
 import React from 'react';
 import { useState } from 'react';
-import { RegistrationFormFields } from '../lib/contentful';
+import { IRegistrationFormFields } from '../lib/contentful';
 import Splitter from './Splitter';
 
-export const RegisterForm: React.FC<Entry<RegistrationFormFields>> = ({ fields }) => {
+export const RegisterForm: React.FC<Entry<IRegistrationFormFields>> = ({ fields }) => {
   const [registered, setRegistered] = useState(
     typeof document !== 'undefined' ? !!document.cookie.match(/unfrmconf_registered/) : false
   );

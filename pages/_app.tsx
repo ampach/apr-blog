@@ -19,9 +19,9 @@ import { IntentVector } from '@uniformdev/optimize-common';
 
 const componentMapping: ComponentMapping = {
   hero: MainHero,
-  cta: CallToAction,
+  callToAction: CallToAction,
   // that's 'personalized hero' to you, sir.
-  '3zPkEj1KqeSn4QdsdnNKO3': PersonalizedHero,
+  personalizedHero: PersonalizedHero,
   talksList: TalkList,
   registrationForm: RegisterForm,
   whyAttend: WhyAttendTestPhotoLocation,

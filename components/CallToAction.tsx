@@ -1,8 +1,8 @@
-import { CallToActionFields } from '../lib/contentful';
+import { ICallToActionFields } from '../lib/contentful';
 import WaveSplitter from './WaveSplitter';
 import { Entry } from 'contentful';
 
-const CallToActionComponent: React.FC<Entry<CallToActionFields>> = ({
+const CallToActionComponent: React.FC<Entry<ICallToActionFields>> = ({
   fields: { heading, subheading, buttonImage, buttonLink, buttonText },
 }) => (
   <>

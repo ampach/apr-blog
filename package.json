@@ -11,9 +11,10 @@
     "export": "node ./scripts/checkIfSsr.js && next export || exit 0",
     "generate": "run-p copy:slug generate:intents",
     "generate:intents": "uniform optimize manifest download --output ./lib/intentManifest.json --apiKey $UNIFORM_API_KEY",
-    "start": "next start -p 4120",
+    "start": "next start -p 4122",
     "ci:build": "run-s build export",
-    "copy:slug": "node ./scripts/copySlugPage.js"
+    "copy:slug": "node ./scripts/copySlugPage.js",
+    "codegen": "contentful-typescript-codegen --output lib/contentful.d.ts"
   },
   "dependencies": {
     "@analytics/google-analytics": "^0.5.2",
@@ -27,6 +28,8 @@
     "@uniformdev/optimize-tracker-storage-indexeddb": "^5.0.1",
     "analytics": "^0.7.2",
     "contentful": "^8.1.6",
+    "contentful-management": "^7.11.0",
+    "contentful-typescript-codegen": "^3.2.2",
     "next": "10.0.7",
     "nookies": "^2.5.0",
     "react": "17.0.1",

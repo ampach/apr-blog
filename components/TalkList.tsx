@@ -1,6 +1,6 @@
 import React from 'react';
 import { PersonalizableListItem } from '@uniformdev/optimize-tracker-common';
-import { TalkFields, TalksListFields } from '../lib/contentful';
+import { ITalkFields, ITalksListFields } from '../lib/contentful';
 import { useContext } from 'react';
 import { TalksContext } from './TalksContext';
 import { Personalize } from '@uniformdev/optimize-tracker-react';
@@ -8,7 +8,7 @@ import { contentfulOptimizeListReader } from '@uniformdev/optimize-tracker-conte
 import { Entry } from 'contentful';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
-interface TalkListProps extends Entry<TalksListFields>, PersonalizableListItem {}
+interface TalkListProps extends Entry<ITalksListFields>, PersonalizableListItem {}
 
 const TalkList: React.FC<TalkListProps> = ({ fields }) => {
   const talks = useContext(TalksContext);
@@ -44,7 +44,7 @@ const TalkList: React.FC<TalkListProps> = ({ fields }) => {
   );
 };
 
-const TalkListItem: React.FC<Entry<TalkFields> & { buttonText: string }> = (props) => {
+const TalkListItem: React.FC<Entry<ITalkFields> & { buttonText: string }> = (props) => {
   const {
     fields: { title, description, unfrmOptIntentTag },
   } = props;

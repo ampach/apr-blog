@@ -1,5 +1,5 @@
 import { Entry } from 'contentful';
 import React from 'react';
-import { TalkFields } from '../lib/contentful';
+import { ITalkFields } from '../lib/contentful';
 
-export const TalksContext = React.createContext<Entry<TalkFields>[] | undefined>(undefined);
+export const TalksContext = React.createContext<Entry<ITalkFields>[] | undefined>(undefined);

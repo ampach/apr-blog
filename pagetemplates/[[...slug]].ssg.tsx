@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { Home, PageProps } from '../components/Home';
 import { getEntriesByContentType, getPageBySlug } from '../lib/api';
-import { TalkFields } from '../lib/contentful';
+import { ITalkFields } from '../lib/contentful';
 
 export default Home;
 
@@ -14,7 +14,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async (context) => {
 
   const page = getPageBySlug(context.preview, slug);
 
-  const talks = getEntriesByContentType<TalkFields>(context.preview, 'talk');
+  const talks = getEntriesByContentType<ITalkFields>(context.preview, 'talk');
 
   return {
     props: {

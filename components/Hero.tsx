@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { useBehaviorTracking } from '@uniformdev/optimize-tracker-react';
 
 import Splitter from './Splitter';
-import { HeroFields } from '../lib/contentful';
+import { IHeroFields } from '../lib/contentful';
 import { Entry } from 'contentful';
 
-const Hero: React.FC<Entry<HeroFields>> = ({ fields }) => {
+const Hero: React.FC<Entry<IHeroFields>> = ({ fields }) => {
   useBehaviorTracking(fields.unfrmOptIntentTag);
 
   const { title, description, buttonText, image, buttonLinkSlug } = fields;

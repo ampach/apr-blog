@@ -1,7 +1,7 @@
 import { contentfulOptimizeListReader } from '@uniformdev/optimize-tracker-contentful';
 import { Personalize } from '@uniformdev/optimize-tracker-react';
 import { Entry } from 'contentful';
-import { PersonalizedHeroFields } from '../lib/contentful';
+import { IPersonalizedHeroFields } from '../lib/contentful';
 import Splitter from './Splitter';
 
 const PersonalizedHeroLoading = () => {
@@ -25,7 +25,7 @@ const PersonalizedHeroLoading = () => {
   );
 };
 
-export const PersonalizedHero: React.FC<Entry<PersonalizedHeroFields>> = ({ fields }) => {
+export const PersonalizedHero: React.FC<Entry<IPersonalizedHeroFields>> = ({ fields }) => {
   const variations = contentfulOptimizeListReader(fields.unfrmOptP13nList);
   return (
     <Personalize
