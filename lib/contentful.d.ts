@@ -74,12 +74,71 @@ export interface IHero extends Entry<IHeroFields> {
   };
 }
 
+export interface IMainNavigationFields {
+  /** Title */
+  title: string;
+
+  /** Items */
+  items: INavigationItem[];
+}
+
+export interface IMainNavigation extends Entry<IMainNavigationFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "mainNavigation";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface INavigationItemFields {
+  /** Title */
+  title: string;
+
+  /** Link */
+  link: IPage;
+}
+
+export interface INavigationItem extends Entry<INavigationItemFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "navigationItem";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IPageFields {
   /** Title */
   title?: string | undefined;
 
+  /** Browser Title */
+  browserTitle: string;
+
   /** Slug */
   slug?: string | undefined;
+
+  /** Meta Tags */
+  metaTags?: string | undefined;
+
+  /** Meta Description */
+  metaDescription?: string | undefined;
 
   /** Components */
   components?:
@@ -92,6 +151,9 @@ export interface IPageFields {
         | IWhyAttend
       )[]
     | undefined;
+
+  /** Page Template */
+  pageTemplate: IPageTemplate;
 }
 
 export interface IPage extends Entry<IPageFields> {
@@ -104,6 +166,31 @@ export interface IPage extends Entry<IPageFields> {
     contentType: {
       sys: {
         id: "page";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IPageTemplateFields {
+  /** Title */
+  title: string;
+
+  /** Navigation */
+  navigation: IMainNavigation;
+}
+
+export interface IPageTemplate extends Entry<IPageTemplateFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "pageTemplate";
         linkType: "ContentType";
         type: "Link";
       };
@@ -279,7 +366,10 @@ export interface IWhyAttend extends Entry<IWhyAttendFields> {
 export type CONTENT_TYPE =
   | "callToAction"
   | "hero"
+  | "mainNavigation"
+  | "navigationItem"
   | "page"
+  | "pageTemplate"
   | "personalizedHero"
   | "registrationForm"
   | "socialItem"

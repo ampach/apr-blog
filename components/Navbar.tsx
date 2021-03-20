@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
+import { PageContext } from './PageContext';
+import {graphqlRequest} from '../lib/graphQLAPI'
 
 import NavMenu from './NavMenu';
 import Logo from './Logo';
@@ -22,11 +24,37 @@ const LockIcon = () => (
 const Nav = () => {
   const [submenuVisible, setSubmenuVisible] = useState(false);
   const [isScrolled, setScrolled] = useState(false);
+  const [mainNav, setMainNav] = useState(null);
   const { tracker } = useUniformTracker();
-
+  const pageContext = React.useContext(PageContext);
   useScrollPosition(({ currPos }) => {
     setScrolled(currPos.y < 0);
   });
+
+useEffect(()=>{
+  const navId = pageContext.pageTemplate.fields.navigation.sys.id;
+  const query = `query{
+    navigation: mainNavigation(id: "${navId}"){
+      title
+      links: itemsCollection{
+          items{
+            title
+            slug
+            link{
+              slug
+            }
+          }
+        }
+    }  
+  }`;
+
+  const responce = graphqlRequest<any>(query)
+  
+ responce.then((json) => { 
+    setMainNav(json.data.navigation)
+  })
+
+}, [])  
 
   return (
     <nav
@@ -67,7 +95,7 @@ const Nav = () => {
             submenuVisible ? 'bg-gray-100' : 'hidden bg-white'
           }  ${isScrolled ? 'bg-white' : 'bg-gray-100'}`}
         >
-          <NavMenu />
+          <NavMenu  items={mainNav} currentSlug={pageContext?.slug} />
           <ActionLink
             isScrolled={isScrolled}
             onClick={async () => {
@@ -99,5 +127,8 @@ const ActionLink = ({ onClick, label, isScrolled, icon }) => (
     </div>
   </button>
 );
+
+
+ 
 
 export default Nav;

@@ -1,9 +1,9 @@
 import { GetServerSideProps } from 'next';
-import { Home, PageProps } from '../components/Home';
+import { Page, PageProps } from '../components/Page';
 import { getEntriesByContentType, getPageBySlug } from '../lib/api';
 import { ITalkFields } from '../lib/contentful';
 
-export default Home;
+export default Page;
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
   let slug = context.params?.slug ? `/${(context.params.slug as string[]).join('/')}` : '/';

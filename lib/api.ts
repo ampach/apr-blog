@@ -1,5 +1,6 @@
 import { createClient, Entry } from 'contentful';
-import { IPageFields } from './contentful';
+import { IPageFields } from './contentful'
+
 
 if (!process.env.CONTENTFUL_SPACE_ID) {
   throw new Error('CONTENTFUL_SPACE_ID env not set.');
@@ -24,7 +25,7 @@ const previewClient = createClient({
 
 const getClient = (preview) => (preview ? previewClient : client);
 
-const parsePage = (entry?: Entry<any>) => {
+const parseEntryObject = (entry?: Entry<any>) => {
   if (!entry) {
     return null;
   }
@@ -45,7 +46,7 @@ export const getPageBySlug = async (preview: boolean, slug: string): Promise<IPa
   });
 
   const [first] = entries.items;
-  return parsePage(first);
+  return parseEntryObject(first);
 };
 
 export const getEntriesByContentType = async <T>(preview: boolean, type: string): Promise<Entry<T>[]> => {

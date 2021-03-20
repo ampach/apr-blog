@@ -1,5 +1,5 @@
 {
-  "name": "@uniformdev/optimize-starter-contentful-next",
+  "name": "apratechs",
   "version": "5.0.1",
   "private": true,
   "license": "Apache-2.0",
@@ -30,6 +30,7 @@
     "contentful": "^8.1.6",
     "contentful-management": "^7.11.0",
     "contentful-typescript-codegen": "^3.2.2",
+    "got": "^11.8.2",
     "next": "10.0.7",
     "nookies": "^2.5.0",
     "react": "17.0.1",

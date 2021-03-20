@@ -16,11 +16,11 @@ import { AppProps } from 'next/dist/next-server/lib/router/router';
 import { Tracker } from '@uniformdev/optimize-tracker-common';
 import { WhyAttendTestPhotoLocation } from '../components/WhyAttend';
 import { IntentVector } from '@uniformdev/optimize-common';
+import { PageContext } from '../components/PageContext';
 
 const componentMapping: ComponentMapping = {
   hero: MainHero,
   callToAction: CallToAction,
-  // that's 'personalized hero' to you, sir.
   personalizedHero: PersonalizedHero,
   talksList: TalkList,
   registrationForm: RegisterForm,
@@ -36,15 +36,17 @@ export default function UniformConfApp({ Component, pageProps, tracker, scoring 
   const trackerInstance = tracker || localTracker;
 
   return (
-    <UniformTracker
-      trackerInstance={trackerInstance}
-      componentMapping={componentMapping}
-      isServer={typeof window === 'undefined'}
-      initialIntentScores={scoring}
-    >
-      <Navbar />
-      <Component {...pageProps} />
-      <Footer />
-    </UniformTracker>
+    <PageContext.Provider value={pageProps.page}>
+      <UniformTracker
+        trackerInstance={trackerInstance}
+        componentMapping={componentMapping}
+        isServer={typeof window === 'undefined'}
+        initialIntentScores={scoring}
+      >
+        <Navbar />
+        <Component {...pageProps} />
+        <Footer />
+      </UniformTracker>
+    </PageContext.Provider>
   );
 }
