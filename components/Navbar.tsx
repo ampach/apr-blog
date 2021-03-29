@@ -96,39 +96,11 @@ useEffect(()=>{
           }  ${isScrolled ? 'bg-white' : 'bg-gray-100'}`}
         >
           <NavMenu  items={mainNav} currentSlug={pageContext?.slug} />
-          <ActionLink
-            isScrolled={isScrolled}
-            onClick={async () => {
-              await tracker.forgetMe();
-              document.cookie =
-                'unfrmconf_registered=; Path=/; samesite=lax; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            }}
-            label="Forget me"
-            icon={<LockIcon />}
-          />
         </div>
       </div>
       <hr className="border-b border-gray-100 opacity-25 my-0 py-0" />
     </nav>
   );
 };
-
-const ActionLink = ({ onClick, label, isScrolled, icon }) => (
-  <button
-    onClick={onClick}
-    id="navAction"
-    className={`mx-auto lg:mx-0 hover:underline font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 ${
-      isScrolled ? 'gradient text-white' : 'bg-white text-gray-800'
-    }`}
-  >
-    <div className="flex items-center">
-      <div>{icon}</div>
-      <div className="ml-1" dangerouslySetInnerHTML={{ __html: label }}></div>
-    </div>
-  </button>
-);
-
-
- 
 
 export default Nav;
